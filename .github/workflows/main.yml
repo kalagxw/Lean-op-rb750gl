@@ -54,11 +54,10 @@ jobs:
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
-        run: DEBIAN_FRONTEND=noninteractive make -j$(nproc) V=s
+        run: cd lede && DEBIAN_FRONTEND=noninteractive make -j$(nproc) V=s
 
       - name: Assemble artifact
         run: |
-          cd lede
           rm -rf ./artifact/
           mkdir -p ./artifact/
           find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
