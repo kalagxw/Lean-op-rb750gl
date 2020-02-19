@@ -28,7 +28,7 @@ jobs:
 
       - name: Checkout
         run: |
-          git clone https://github.com/coolsnowwolf/lede.git && cd lede
+          git clone https://github.com/coolsnowwolf/lede.git
       - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -43,16 +43,14 @@ jobs:
           sudo -E apt-get clean
       - name: Update feeds
         run: |
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+          cd lede && ./scripts/feeds update -a && ./scripts/feeds install -a
       - name: Costom configure file
         run: |
-          rm -f ./.config*
-          cp ./lean-rb750gl ./.config
-          make defconfig
+          cd lede && rm -f ./.config* && cp ./lean-rb750gl ./.config && make defconfig
       - name: Make download
         run: |
-          make download -j8
+          cd lede
+          make download -j8 &&
           find dl -size -1024c -exec ls -l {} \;
           find dl -size -1024c -exec rm -f {} \;
       - name: Compile firmware
@@ -60,6 +58,7 @@ jobs:
 
       - name: Assemble artifact
         run: |
+          cd lede
           rm -rf ./artifact/
           mkdir -p ./artifact/
           find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
