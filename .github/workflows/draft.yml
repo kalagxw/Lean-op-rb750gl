@@ -10,8 +10,8 @@
 name: OpenWrt-lean-rb750gl
 
 on:
-#  schedule:
-#    - cron: 0 17 * * *
+  schedule:
+    - cron: 12 11 * * *
 
 jobs:
 
