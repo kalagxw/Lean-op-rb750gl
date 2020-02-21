@@ -23,7 +23,7 @@ jobs:
 
       - name: Checkout
         run: |
-          git clone https://github.com/coolsnowwolf/lede.git && cd lede && cd package/network/services/dnsmasq/patches && wget https://raw.githubusercontent.com/muziling/dnsmasq-chnroute/0000-Add-feature-to-support-chnroutes.patch --no-check-certificate && cd ../../../../../
+          git clone https://github.com/coolsnowwolf/lede.git && cd lede && cd package/network/services/dnsmasq/patches && wget --no-check-certificate https://raw.githubusercontent.com/muziling/dnsmasq-chnroute/master/0000-Add-feature-to-support-chnroutes.patch && cd ../../../../../
       - name: Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
