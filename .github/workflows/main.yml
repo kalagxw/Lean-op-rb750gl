@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: OpenWrt-lean-rb750gl
+name: OpenWrt-lean-rb750gr3
 
 on:
   schedule:
@@ -42,7 +42,7 @@ jobs:
           cd lede && ./scripts/feeds update -a && ./scripts/feeds install -a
       - name: Costom configure file
         run: |
-          cd lede && rm -f ./.config* && wget https://raw.githubusercontent.com/kalagxw/Lean-op-rb750gl/master/lean-rb750gl && mv ./lean-rb750gl ./.config && make defconfig
+          cd lede && rm -f ./.config* && wget https://raw.githubusercontent.com/kalagxw/Lean-op-rb750gl/master/750gr3 && mv ./750gr3 ./.config && make defconfig
       - name: Make download
         run: |
           cd lede
